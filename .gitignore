@@ -1,0 +1,6 @@
+/.idea/
+/bower_components/
+/node_modules/
+/.rebooted
+/atlassian-ide-plugin.xml
+*.copy.js

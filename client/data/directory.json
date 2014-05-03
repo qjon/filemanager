@@ -1,0 +1,74 @@
+{
+    "dirs": [
+        {
+            "id": 1,
+            "name": "Katalog"
+        },
+        {
+            "id": 2,
+            "name": "Katalog o bardzo długiej nazwie"
+        }
+    ],
+    "files": [
+        {
+            "id": 1,
+            "name": "Dino 1",
+            "src": "/data/images/IMG_5549.JPG"
+        },
+        {
+            "id": 10,
+            "name": "Dino 2",
+            "src": "/data/images/IMG_5554.JPG"
+        },
+        {
+            "id": 11,
+            "name": "Dino 3",
+            "src": "/data/images/IMG_5559.JPG"
+        },
+        {
+            "id": 2,
+            "name": "Dino 4",
+            "src": "/data/images/IMG_5565.JPG"
+        },
+        {
+            "id": 4,
+            "name": "Dino 5",
+            "src": "/data/images/IMG_5567.JPG"
+        },
+        {
+            "id": 7,
+            "name": "Dino 6",
+            "src": "/data/images/IMG_5568.JPG"
+        },
+        {
+            "id": 8,
+            "name": "Dino 7",
+            "src": "/data/images/IMG_5573.JPG"
+        },
+        {
+            "id": 21,
+            "name": "Dino 8",
+            "src": "/data/images/IMG_5583.JPG"
+        },
+        {
+            "id": 22,
+            "name": "Dino 9",
+            "src": "/data/images/IMG_5584.JPG"
+        },
+        {
+            "id": 34,
+            "name": "Dino 10",
+            "src": "/data/images/IMG_5585.JPG"
+        },
+        {
+            "id": 112,
+            "name": "Dino 11",
+            "src": "/data/images/IMG_5588.JPG"
+        },
+        {
+            "id": 100,
+            "name": "Dino 12",
+            "src": "/data/images/IMG_5590.JPG"
+        }
+    ]
+}

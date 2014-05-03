@@ -1,0 +1,35 @@
+{
+    "name": "filemanager",
+    "directory": "client/js/components",
+    "dependencies": {
+        "bootstrap": "latest",
+        "font-awesome-bower": "*",
+        "jquery": "*",
+        "jqueryui": "*",
+        "angular-bootstrap": "*",
+        "angular": "1.2.*",
+        "angular-resource": "1.2.*",
+        "angular-route": "1.2.*",
+        "angular-mocks": "1.2.*",
+        "angular-animate": "1.2.*",
+        "angular-sanitize": "1.2.*",
+        "angular-i18n": "1.2.*",
+        "angular-ui-router": "latest",
+        "lodash": "2.4.*",
+        "ng-flow": "*"
+    }
+    ,"exportsOverride": {
+        "angular-bootstrap": {
+            "./": ["**"]
+        },
+        "bootstrap": {
+            "js": "dist/**/*.min.js",
+            "css": "dist/**/*.min.css",
+            "fonts": "dist/**/glyphicons*"
+        },
+        "font-awesome-bower": {
+            "css": "**/*.css",
+            "fonts": "**/*-webfont*"
+        }
+    }
+}

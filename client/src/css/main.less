@@ -1,0 +1,81 @@
+@containerClass: filemanager;
+
+@thumbWidth: 180px;
+@thumbHeight: 140px;
+
+@thumbNameHeight: 30px;
+
+
+.@{containerClass} {
+	.nav-row {
+		margin: 0 0 10px 0;
+
+		div:first-child {
+			margin-left: 0;
+			padding-left: 0;
+		}
+
+		div:last-child {
+			margin-right: 0;
+			padding-right: 0;
+		}
+	}
+
+	.btn {
+		height: 34px;
+
+		// Ikonki w przyciskach
+		.fa {
+			margin-right: 5px;
+			&:last-child {
+				margin-right: 2px;
+			}
+		}
+	}
+
+
+	.main-panel {
+		.thumb {
+			width: @thumbWidth;
+			height: @thumbHeight;
+			margin: 20px;
+
+
+			.thumb-image {
+				height: @thumbHeight - @thumbNameHeight - 10;
+			}
+
+			.thumb-name {
+				height:  @thumbNameHeight;
+				line-height:  @thumbNameHeight;
+				background-color: #eeeeee;
+				border-radius: 3px;
+				padding: 0 3px;
+				overflow: hidden;
+				white-space:nowrap;
+				text-overflow: ellipsis;
+				text-align: center;
+			}
+
+			&.thumb-folder {
+
+				text-align: center;
+
+				.thumb-image {
+					&.fa {
+						font-size: @thumbHeight - @thumbNameHeight;
+					}
+				}
+			}
+
+
+			&.thumb-file {
+				.thumb-image {
+					width: @thumbWidth - 10;
+					border-radius: 3px;
+				}
+			}
+
+		}
+	}
+}

@@ -1,0 +1,49 @@
+.filemanager .nav-row {
+  margin: 0 0 10px 0;
+}
+.filemanager .nav-row div:first-child {
+  margin-left: 0;
+  padding-left: 0;
+}
+.filemanager .nav-row div:last-child {
+  margin-right: 0;
+  padding-right: 0;
+}
+.filemanager .btn {
+  height: 34px;
+}
+.filemanager .btn .fa {
+  margin-right: 5px;
+}
+.filemanager .btn .fa:last-child {
+  margin-right: 2px;
+}
+.filemanager .main-panel .thumb {
+  width: 180px;
+  height: 140px;
+  margin: 20px;
+}
+.filemanager .main-panel .thumb .thumb-image {
+  height: 100px;
+}
+.filemanager .main-panel .thumb .thumb-name {
+  height: 30px;
+  line-height: 30px;
+  background-color: #eeeeee;
+  border-radius: 3px;
+  padding: 0 3px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  text-align: center;
+}
+.filemanager .main-panel .thumb.thumb-folder {
+  text-align: center;
+}
+.filemanager .main-panel .thumb.thumb-folder .thumb-image.fa {
+  font-size: 110px;
+}
+.filemanager .main-panel .thumb.thumb-file .thumb-image {
+  width: 170px;
+  border-radius: 3px;
+}

@@ -1,0 +1,63 @@
+<html ng-app="filemanager">
+<head>
+    <link rel="stylesheet" href="components/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="components/font-awesome-bower/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/dist/css/main.min.css">
+
+    <script src="components/jquery/jquery.js"></script>
+    <script src="components/bootstrap/js/bootstrap.min.js"></script>
+    <script src="components/angular/angular.js"></script>
+    <script src="components/angular-route/angular-route.js"></script>
+    <script src="components/angular-resource/angular-resource.js"></script>
+    <script src="components/angular-bootstrap/ui-bootstrap.js"></script>
+    <script src="components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+
+    <script src="/dist/js/app.min.js"></script>
+
+
+
+    <script>__reloadServerUrl="ws://localhost:8001";</script>
+    <script type="text/javascript" src="//localhost:8001/__reload/client.js"></script>
+</head>
+<body>
+    <div data-ng-controller="MainCtrl" class="container filemanager">
+        <h1>Filemanager</h1>
+        <div class="row nav-row">
+            <div class="col-sm-3 col-md-3 text-left">
+                <div class="btn-group">
+                    <button class="btn btn-default" title="Utwórz katalog"><i class="fa fa-plus"></i><i class="fa fa-folder-o"></i></button>
+                    <button class="btn btn-default" title="Wgraj pliki"><i class="fa fa-plus"></i><i class="fa fa-files-o"></i></button>
+                </div>
+            </div>
+            <div class="col-sm-4 col-md-4 text-center">
+                <div class="btn-group">
+                    <button class="btn btn-default active" title="Wszystkie typy plików"><i class="fa fa-file-o"></i></button>
+                    <button class="btn btn-default" title="Zdjęcia"><i class="fa fa-picture-o"></i></button>
+                    <button class="btn btn-default" title="Audio"><i class="fa fa-music"></i></button>
+                    <button class="btn btn-default" title="Wideo"><i class="fa fa-video-camera"></i></button>
+                    <button class="btn btn-default" title="Archiwa"><i class="fa fa-archive"></i></button>
+                </div>
+            </div>
+            <div class="col-sm-4 col-md-4 col-md-push-1 col-sm-push-1">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Wyszukaj">
+                    <span class="btn btn-default input-group-addon"><i class="fa fa-search"></i></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-default main-panel">
+            <div class="panel-body">
+                <div ng-repeat="dir in dirs" class="thumb thumb-folder img-thumbnail">
+                    <i class="thumb-image fa fa-folder-o"></i>
+                    <div class="thumb-name" data-ng-bind="dir.name"></div>
+                </div>
+                <div ng-repeat="file in files" class="thumb thumb-file img-thumbnail">
+                    <img class="thumb-image" ng-src="{{ file.src }}">
+                    <div class="thumb-name" data-ng-bind="file.name"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
