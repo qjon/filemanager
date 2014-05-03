@@ -1,0 +1,4 @@
+filemanager
+===========
+
+AngularJS file manager
