@@ -8,7 +8,7 @@ module.exports = function(grunt) {
         bower: {
             install: {
                 options: {
-                    targetDir: '<%= pkg.options.client.src %>/components',
+                    targetDir: '<%= pkg.options.client.src %>/../components',
                     install: true,
                     verbose: true,
                     cleanTargetDir: true,
