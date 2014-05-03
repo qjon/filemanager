@@ -57,7 +57,7 @@ module.exports = function(grunt) {
                 mangle: false
             },
             files: {
-                src: ['<%= pkg.options.client.src %>/js/app/app.js', '<%= pkg.options.client.src %>/js/app/controllers.js'],
+                src: ['<%= pkg.options.client.src %>/js/app/app.js', '<%= pkg.options.client.src %>/js/app/filters.js', '<%= pkg.options.client.src %>/js/app/controllers.js'],
                 dest: '<%= pkg.options.client.dist %>/js/app.min.js'
             }
         },
@@ -65,7 +65,7 @@ module.exports = function(grunt) {
             options: {
                 spawn: false
             },
-            files: ['<%= pkg.options.client.src %>/js/src/app/**', '<%= pkg.options.client.src %>/css/**', '/index.html', '<%= pkg.options.client.src %>/data/**/*.json'],
+            files: ['<%= pkg.options.client.src %>/js/app/**/*.js', '<%= pkg.options.client.src %>/css/**', '/index.html', '<%= pkg.options.client.src %>/data/**/*.json'],
             tasks: ['jshint', 'less', 'uglify', 'reload']
         }
     });
