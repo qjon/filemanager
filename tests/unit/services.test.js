@@ -1,20 +1,21 @@
 describe('services.js', function () {
     beforeEach(module('filemanager'));
 
-    describe('FileIconClassesService', function () {
-        var fileIconClassService;
+    describe('FileIconsService', function () {
+        var fileIcons;
 
         beforeEach(inject(function($injector){
-            fileIconClassService = $injector.get('FileIconClasses');
+            fileIcons = $injector.get('FileIcons');
         }));
 
 
-        it('should return fa-file-text for moj.pdf file name', function () {
-            expect(fileIconClassService.getClass('moj.pdf')).toEqual('fa-file-text');
+        it('should return /data/icons/_blank.png for moj.jar file name', function () {
+            expect(fileIcons.getIconPath('moj.jar')).toEqual('/data/icons/_blank.png');
         });
 
-        it('should return fa-file for to.moj.exe file name', function () {
-            expect(fileIconClassService.getClass('to.moj.exe')).toEqual('fa-file');
+        it('should return /data/icons/pdf.png for moj.jar file name', function () {
+            expect(fileIcons.getIconPath('moj.pdf')).toEqual('/data/icons/pdf.png');
         });
+
     });
 });

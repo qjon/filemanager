@@ -55,7 +55,7 @@
                 </div>
                 <div ng-repeat="file in files | fileMime:(fileTypes[fileTypeFilter] || []) | filter:{'name': search } | orderBy:'name'" class="thumb thumb-file img-thumbnail">
                     <img ng-if="file.isImage()" ng-src="{{ file.src }}" class="thumb-image" >
-                    <div ng-if="!file.isImage()" class="thumb-image" ><i class="fa {{ getIconClass(file) }}"></i></div>
+                    <img ng-if="!file.isImage()" ng-src="{{ file.icon }}" class="thumb-image thumb-icon" >
                     <div class="thumb-name" data-ng-bind="file.name"></div>
                 </div>
             </div>

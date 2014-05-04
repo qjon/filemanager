@@ -25,7 +25,7 @@ describe('models.js', function () {
         describe('functions:', function () {
 
             it('setData: should set data for new object correctly', function () {
-                var fileObj = new FileObj({id: 7, name: 'Nowy plik'});
+                var fileObj = new FileObj({id: 7, name: 'Nowy plik', mime: 'image/jpg'});
                 expect(fileObj.id).toBe(7);
                 expect(fileObj.name).toEqual('Nowy plik');
             });

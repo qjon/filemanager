@@ -39,7 +39,12 @@
 			width: @thumbWidth;
 			height: @thumbHeight;
 			margin: 20px;
+			cursor: pointer;
 
+			&:hover {
+				border: 1px solid red;
+				opacity: 0.7;
+			}
 
 			.thumb-image {
 				height: @thumbHeight - @thumbNameHeight - 10;
@@ -78,6 +83,12 @@
 				.thumb-image {
 					width: @thumbWidth - 10;
 					border-radius: 3px;
+
+					&.thumb-icon {
+						width: 80px;
+						height: 80px;
+						margin: 10px (@thumbWidth - 80)/2;
+					}
 				}
 			}
 

@@ -22,6 +22,11 @@
   width: 180px;
   height: 140px;
   margin: 20px;
+  cursor: pointer;
+}
+.filemanager .main-panel .thumb:hover {
+  border: 1px solid red;
+  opacity: 0.7;
 }
 .filemanager .main-panel .thumb .thumb-image {
   height: 100px;
@@ -50,4 +55,9 @@
 .filemanager .main-panel .thumb.thumb-file .thumb-image {
   width: 170px;
   border-radius: 3px;
+}
+.filemanager .main-panel .thumb.thumb-file .thumb-image.thumb-icon {
+  width: 80px;
+  height: 80px;
+  margin: 10px 50px;
 }

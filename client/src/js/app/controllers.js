@@ -1,6 +1,6 @@
 'use strict';
 angular.module('filemanager')
-    .controller('MainCtrl', ['$scope', '$http', 'DirObj', 'FileObj', 'FileIconClasses', function($scope, $http, DirObj, FileObj, FileIconClasses){
+    .controller('MainCtrl', ['$scope', '$http', 'DirObj', 'FileObj', function($scope, $http, DirObj, FileObj){
         /**
          * List of folders in current folder
          * @type {Array}
@@ -59,14 +59,5 @@ angular.module('filemanager')
             }
         };
 
-
-        /**
-         * Get file
-         * @param file
-         * @returns {*}
-         */
-        $scope.getIconClass = function(file){
-            return FileIconClasses.getClass(file.name);
-        }
     }])
 ;

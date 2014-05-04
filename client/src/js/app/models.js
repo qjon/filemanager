@@ -1,7 +1,8 @@
 angular.module('filemanager')
-    .factory('FileObj', ['FileTypes', function(FileTypes){
+    .factory('FileObj', ['FileTypes', 'FileIcons', function(FileTypes, FileIcons){
         function FileObj(data) {
             this.image = false;
+            this.icon = false;
             this.setData(data);
         }
 
@@ -10,6 +11,10 @@ angular.module('filemanager')
                 angular.extend(this, data);
 
                 this.image = (FileTypes.images.indexOf(this.mime) > -1) ? true : false;
+                if(!this.image)
+                {
+                    this.icon = FileIcons.getIconPath(this.src);
+                }
             },
             isImage: function(){
                 return this.image;
