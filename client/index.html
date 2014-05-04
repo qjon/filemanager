@@ -40,7 +40,7 @@
             </div>
             <div class="col-sm-4 col-md-4 col-md-push-1 col-sm-push-1">
                 <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Wyszukaj">
+                    <input ng-model="search" type="text" class="form-control" placeholder="Filtruj">
                     <span class="btn btn-default input-group-addon"><i class="fa fa-search"></i></span>
                 </div>
             </div>
@@ -48,11 +48,11 @@
 
         <div class="panel panel-default main-panel">
             <div class="panel-body">
-                <div ng-repeat="dir in dirs" class="thumb thumb-folder img-thumbnail">
+                <div ng-repeat="dir in dirs | filter:{'name': search } | orderBy:'name'" class="thumb thumb-folder img-thumbnail">
                     <i class="thumb-image fa fa-folder-o"></i>
                     <div class="thumb-name" data-ng-bind="dir.name"></div>
                 </div>
-                <div ng-repeat="file in files | fileMime:(fileTypes[fileTypeFilter] || [])" class="thumb thumb-file img-thumbnail">
+                <div ng-repeat="file in files | fileMime:(fileTypes[fileTypeFilter] || []) | filter:{'name': search } | orderBy:'name'" class="thumb thumb-file img-thumbnail">
                     <img class="thumb-image" ng-src="{{ file.src }}">
                     <div class="thumb-name" data-ng-bind="file.name"></div>
                 </div>
