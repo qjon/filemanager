@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="/dist/css/main.min.css">
 
     <script src="components/jquery/jquery.js"></script>
+    <script src="components/lodash/lodash.compat.js"></script>
     <script src="components/bootstrap/js/bootstrap.min.js"></script>
     <script src="components/angular/angular.js"></script>
     <script src="components/angular-route/angular-route.js"></script>
@@ -53,7 +54,8 @@
                     <div class="thumb-name" data-ng-bind="dir.name"></div>
                 </div>
                 <div ng-repeat="file in files | fileMime:(fileTypes[fileTypeFilter] || []) | filter:{'name': search } | orderBy:'name'" class="thumb thumb-file img-thumbnail">
-                    <img class="thumb-image" ng-src="{{ file.src }}">
+                    <img ng-if="file.isImage()" ng-src="{{ file.src }}" class="thumb-image" >
+                    <div ng-if="!file.isImage()" class="thumb-image" ><i class="fa {{ getIconClass(file) }}"></i></div>
                     <div class="thumb-name" data-ng-bind="file.name"></div>
                 </div>
             </div>

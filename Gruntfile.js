@@ -57,7 +57,13 @@ module.exports = function(grunt) {
                 mangle: false
             },
             files: {
-                src: ['<%= pkg.options.client.src %>/js/app/app.js', '<%= pkg.options.client.src %>/js/app/filters.js', '<%= pkg.options.client.src %>/js/app/controllers.js'],
+                src: [
+                    '<%= pkg.options.client.src %>/js/app/app.js',
+                    '<%= pkg.options.client.src %>/js/app/filters.js',
+                    '<%= pkg.options.client.src %>/js/app/models.js',
+                    '<%= pkg.options.client.src %>/js/app/services.js',
+                    '<%= pkg.options.client.src %>/js/app/controllers.js'
+                ],
                 dest: '<%= pkg.options.client.dist %>/js/app.min.js'
             }
         },

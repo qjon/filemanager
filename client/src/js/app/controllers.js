@@ -1,26 +1,26 @@
 'use strict';
 angular.module('filemanager')
-    .controller('MainCtrl', ['$scope', '$http', function($scope, $http){
+    .controller('MainCtrl', ['$scope', '$http', 'DirObj', 'FileObj', 'FileIconClasses', function($scope, $http, DirObj, FileObj, FileIconClasses){
         /**
-         * Lista katalogów obecnie przeglądanego katalogu
+         * List of folders in current folder
          * @type {Array}
          */
         $scope.dirs = [];
 
         /**
-         * Lista plików obecnie przeglądanego katalogu
+         * List of files in current folder
          * @type {Array}
          */
         $scope.files = [];
 
         /**
-         * Filtr typów plików (false = wyłączony)
+         * Current file type filter name (false = off)
          * @type {boolean|string}
          */
         $scope.fileTypeFilter = false;
 
         /**
-         * Lista typów plików wraz z typami mime
+         * List file  mime types
          * @type {{images: Array, audio: Array, video: Array, archive: Array}}
          */
         $scope.fileTypes = {
@@ -32,8 +32,13 @@ angular.module('filemanager')
 
         $http.get('/data/directory.json')
             .success(function(data){
-                $scope.dirs = data.dirs;
-                $scope.files = data.files;
+                data.dirs.forEach(function(dirData){
+                    $scope.dirs.push(new DirObj(dirData));
+                });
+
+                data.files.forEach(function(fileData){
+                    $scope.files.push(new FileObj(fileData));
+                });
             })
         ;
 
@@ -53,5 +58,15 @@ angular.module('filemanager')
                 $scope.fileTypeFilter = false;
             }
         };
+
+
+        /**
+         * Get file
+         * @param file
+         * @returns {*}
+         */
+        $scope.getIconClass = function(file){
+            return FileIconClasses.getClass(file.name);
+        }
     }])
 ;

@@ -16,8 +16,11 @@ module.exports = function(config) {
       '../client/components/angular/*.js',
       '../client/components/angular-route/*.js',
       '../client/components/angular-mocks/*.js',
+      '../client/components/lodash/*.js',
       '../client/src/js/app/app.js',
       '../client/src/js/app/filters.js',
+      '../client/src/js/app/services.js',
+      '../client/src/js/app/models.js',
       '../client/src/js/app/controllers.js',
       'unit/**/*.test.js'
     ],

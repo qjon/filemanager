@@ -81,6 +81,12 @@
             "name": "Dino 12",
             "src": "/data/images/IMG_5590.JPG",
             "mime": "image/jpg"
+        },
+        {
+            "id": 50,
+            "name": "Przykładowy PDF",
+            "src": "/data/pdf/przykladowy_pdf.pdf",
+            "mime": "application/pdf"
         }
     ]
 }

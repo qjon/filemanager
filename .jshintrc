@@ -39,5 +39,6 @@
 
     "onevar": true,
 
+    "asi": true,
     "eqeqeq": false
 }

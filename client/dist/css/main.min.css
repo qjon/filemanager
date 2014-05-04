@@ -25,6 +25,10 @@
 }
 .filemanager .main-panel .thumb .thumb-image {
   height: 100px;
+  text-align: center;
+}
+.filemanager .main-panel .thumb .thumb-image .fa {
+  font-size: 100px;
 }
 .filemanager .main-panel .thumb .thumb-name {
   height: 30px;
