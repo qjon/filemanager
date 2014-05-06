@@ -1,7 +1,7 @@
 {
     "name": "filemanager",
     "description": "AngularJS file manager",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "options": {
         "server": {
             "src": "server/src",
