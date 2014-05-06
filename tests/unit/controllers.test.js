@@ -49,7 +49,7 @@ describe('controllers.js', function () {
                     expect($scope.fileTypeFilter).toBeFalsy();
                 });
 
-                it('use undefined filter name should clear filter', function () {
+                it('use unknown filter name should clear filter', function () {
                     $scope.setFilterType('photoshop');
                     expect($scope.fileTypeFilter).toBeFalsy();
                 });

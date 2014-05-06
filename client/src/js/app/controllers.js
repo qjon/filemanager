@@ -1,6 +1,6 @@
 'use strict';
 angular.module('filemanager')
-    .controller('MainCtrl', ['$scope', '$http', 'DirObj', 'FileObj', function($scope, $http, DirObj, FileObj){
+    .controller('MainCtrl', ['$scope', '$http', 'DirObj', 'FileObj', 'FileTypes', function($scope, $http, DirObj, FileObj, FileTypes){
         /**
          * List of folders in current folder
          * @type {Array}
@@ -23,12 +23,7 @@ angular.module('filemanager')
          * List file  mime types
          * @type {{images: Array, audio: Array, video: Array, archive: Array}}
          */
-        $scope.fileTypes = {
-            images: ['image/jpg', 'image/jpeg', 'image/png', 'image/gif', 'image/png'],
-            audio: ['audio/mpeg', 'audio/x-ms-wma', 'audio/vnd.rn-realaudio', 'audio/x-wav'],
-            video: ['video/mpeg', 'video/mp4', 'video/quicktime', 'video/x-ms-wmv'],
-            archive: ['application/zip']
-        };
+        $scope.fileTypes = FileTypes;
 
         $http.get('/data/directory.json')
             .success(function(data){

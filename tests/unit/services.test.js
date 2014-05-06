@@ -9,11 +9,11 @@ describe('services.js', function () {
         }));
 
 
-        it('should return /data/icons/_blank.png for moj.jar file name', function () {
+        it('should return /data/icons/_blank.png for file name equal moj.jar', function () {
             expect(fileIcons.getIconPath('moj.jar')).toEqual('/data/icons/_blank.png');
         });
 
-        it('should return /data/icons/pdf.png for moj.jar file name', function () {
+        it('should return /data/icons/pdf.png for file name equal moj.pdf', function () {
             expect(fileIcons.getIconPath('moj.pdf')).toEqual('/data/icons/pdf.png');
         });
 

@@ -23,6 +23,11 @@ module.exports = function(grunt) {
             },
             files: ['<%= pkg.options.client.src %>/js/app/**/*.js']
         },
+        karma: {
+            unit: {
+                configFile: 'tests/karma.config.js'
+            }
+        },
         less: {
             dist: {
                 options: {
@@ -83,6 +88,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-bower-task');
     grunt.loadNpmTasks('grunt-express-server');
     grunt.loadNpmTasks('grunt-reload');
+    grunt.loadNpmTasks('grunt-karma');
 
 
 
