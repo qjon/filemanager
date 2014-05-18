@@ -1,4 +1,4 @@
 'use strict';
-var filemanager = angular.module('filemanager', ['ngRoute']);
+var filemanager = angular.module('filemanager', ['ngRoute', 'ngAnimate']);
 
 

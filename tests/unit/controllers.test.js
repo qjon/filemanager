@@ -54,6 +54,38 @@ describe('controllers.js', function () {
                     expect($scope.fileTypeFilter).toBeFalsy();
                 });
             });
+
+            describe('showDirSection:', function () {
+                beforeEach(function(){
+                    $scope.showDirSection();
+                });
+
+                it('should change isViewerSectionVisible to false', function () {
+                    expect($scope.isViewerSectionVisible).toBeFalsy();
+                });
+
+                it('should change isDirSectionVisible to true', function () {
+                    expect($scope.isDirSectionVisible).toBeTruthy();
+                });
+            });
+
+            describe('showViewerSection:', function () {
+                beforeEach(function(){
+                    $scope.showViewerSection();
+                });
+
+                it('should change isViewerSectionVisible to true', function () {
+                    expect($scope.isViewerSectionVisible).toBeTruthy();
+                });
+
+                it('should change isDirSectionVisible to false', function () {
+                    expect($scope.isDirSectionVisible).toBeFalsy();
+                });
+
+            });
+
+
+
         });
 
     });

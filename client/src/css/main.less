@@ -7,6 +7,9 @@
 
 
 .@{containerClass} {
+
+	position: relative;
+
 	.nav-row {
 		margin: 0 0 10px 0;
 
@@ -93,5 +96,37 @@
 			}
 
 		}
+	}
+
+
+
+
+	// animation
+	.animation{
+		opacity: 1;
+		position: absolute;
+	}
+	.animation.ng-hide-add,
+	.animation.ng-hide-remove {
+		display:block!important;
+	}
+
+	.animation.ng-hide-add, .animation.ng-hide-remove{
+		/* The animation code itself */
+		-webkit-transition: all linear 0.5s;
+		-moz-transition: all linear 0.5s;
+		-ms-transition: all linear 0.5s;
+		-o-transition: all linear 0.5s;
+		transition: all linear 0.5s;
+	}
+
+	.animation.ng-hide-add.ng-hide-add-active,
+	.animation.ng-hide-remove {
+		opacity: 0;
+	}
+
+	.animation.ng-hide-add,
+	.animation.ng-hide-remove.ng-hide-remove-active {
+		opacity:1;
 	}
 }

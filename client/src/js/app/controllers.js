@@ -25,6 +25,19 @@ angular.module('filemanager')
          */
         $scope.fileTypes = FileTypes;
 
+        /**
+         * Is viewer section visible
+         * @type {boolean}
+         */
+        $scope.isViewerSectionVisible = true;
+
+        /**
+         * Is dir section visible
+         * @type {boolean}
+         */
+        $scope.isDirSectionVisible = false;
+
+
         $http.get('/data/directory.json')
             .success(function(data){
                 data.dirs.forEach(function(dirData){
@@ -53,6 +66,18 @@ angular.module('filemanager')
                 $scope.fileTypeFilter = false;
             }
         };
+
+
+        $scope.showDirSection = function(){
+            $scope.isViewerSectionVisible = false;
+            $scope.isDirSectionVisible = true;
+        }
+
+
+        $scope.showViewerSection = function(){
+            $scope.isViewerSectionVisible = true;
+            $scope.isDirSectionVisible = false;
+        }
 
     }])
 ;

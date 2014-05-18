@@ -9,6 +9,7 @@ module.exports = function(config) {
       '../client/components/angular/*.js',
       '../client/components/angular-route/*.js',
       '../client/components/angular-mocks/*.js',
+      '../client/components/angular-animate/*.js',
       '../client/components/lodash/*.js',
       '../client/src/js/app/app.js',
       '../client/src/js/app/filters.js',
