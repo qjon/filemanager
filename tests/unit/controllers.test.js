@@ -23,8 +23,8 @@ describe('controllers.js', function () {
         });
 
         describe('primary values', function () {
-            it('dirs should be empty array', function () {
-                expect($scope.dirs.length).toBe(0);
+            it('dirs should be array', function () {
+                expect(Array.isArray($scope.dirs)).toBeTruthy();
             });
 
             it('files should be empty array', function () {
@@ -54,6 +54,38 @@ describe('controllers.js', function () {
                     expect($scope.fileTypeFilter).toBeFalsy();
                 });
             });
+//
+//            describe('showDirSection:', function () {
+//                beforeEach(function(){
+//                    $scope.showDirSection();
+//                });
+//
+//                it('should change isViewerSectionVisible to false', function () {
+//                    expect($scope.isViewerSectionVisible).toBeFalsy();
+//                });
+//
+//                it('should change isDirSectionVisible to true', function () {
+//                    expect($scope.isDirSectionVisible).toBeTruthy();
+//                });
+//            });
+//
+//            describe('showViewerSection:', function () {
+//                beforeEach(function(){
+//                    $scope.showViewerSection();
+//                });
+//
+//                it('should change isViewerSectionVisible to true', function () {
+//                    expect($scope.isViewerSectionVisible).toBeTruthy();
+//                });
+//
+//                it('should change isDirSectionVisible to false', function () {
+//                    expect($scope.isDirSectionVisible).toBeFalsy();
+//                });
+//
+//            });
+
+
+
         });
 
     });

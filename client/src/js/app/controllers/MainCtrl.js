@@ -1,17 +1,17 @@
 'use strict';
 angular.module('filemanager')
-    .controller('MainCtrl', ['$scope', '$http', 'DirObj', 'FileObj', 'FileTypes', function($scope, $http, DirObj, FileObj, FileTypes){
+    .controller('MainCtrl', ['$scope', '$state', '$http', 'DirStructure', 'DirObj', 'FileObj', 'FileTypes', function($scope, $state, $http, DirStructure, DirObj, FileObj, FileTypes){
         /**
          * List of folders in current folder
          * @type {Array}
          */
-        $scope.dirs = [];
+        $scope.dirs = DirStructure.currentDir.dirs;
 
         /**
          * List of files in current folder
          * @type {Array}
          */
-        $scope.files = [];
+        $scope.files = DirStructure.currentDir.files;
 
         /**
          * Current file type filter name (false = off)
@@ -24,18 +24,6 @@ angular.module('filemanager')
          * @type {{images: Array, audio: Array, video: Array, archive: Array}}
          */
         $scope.fileTypes = FileTypes;
-
-        $http.get('/data/directory.json')
-            .success(function(data){
-                data.dirs.forEach(function(dirData){
-                    $scope.dirs.push(new DirObj(dirData));
-                });
-
-                data.files.forEach(function(fileData){
-                    $scope.files.push(new FileObj(fileData));
-                });
-            })
-        ;
 
 
         /**
@@ -54,5 +42,9 @@ angular.module('filemanager')
             }
         };
 
+
+        $scope.showDirSection = function(){
+            $state.go('main.add');
+        }
     }])
 ;

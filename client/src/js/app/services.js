@@ -1,4 +1,24 @@
 angular.module('filemanager')
+    .service('LastState', ['$state', function($state){
+        this.state = false;
+        this.params = {};
+
+        this.setLastState = function(state, params){
+            this.state = state;
+            this.params = params;
+        }
+
+        this.goBack = function(){
+            if(this.state && this.state.name !== '')
+            {
+                $state.go(this.state.name, this.params);
+            }
+            else
+            {
+                $state.go('main', {dirId: 0});
+            }
+        }
+    }])
     .service('FileTypes', function(){
         this.images = ['image/jpg', 'image/jpeg', 'image/png', 'image/gif', 'image/png'];
         this.audio = ['audio/mpeg', 'audio/x-ms-wma', 'audio/vnd.rn-realaudio', 'audio/x-wav'];

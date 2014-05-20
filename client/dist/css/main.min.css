@@ -1,3 +1,6 @@
+.filemanager {
+  position: relative;
+}
 .filemanager .nav-row {
   margin: 0 0 10px 0;
 }
@@ -60,4 +63,23 @@
   width: 80px;
   height: 80px;
   margin: 10px 50px;
+}
+.filemanager .sub-view {
+  max-height: 600px;
+  overflow: hidden;
+}
+.filemanager .sub-view[ui-view].ng-enter {
+  -webkit-transition: all linear 0.8s;
+  -moz-transition: all linear 0.8s;
+  -ms-transition: all linear 0.8s;
+  -o-transition: all linear 0.8s;
+  transition: all linear 0.8s;
+}
+.filemanager .sub-view[ui-view].ng-enter {
+  opacity: 0;
+  max-height: 0;
+}
+.filemanager .sub-view[ui-view].ng-enter-active {
+  opacity: 1;
+  max-height: 600px;
 }
