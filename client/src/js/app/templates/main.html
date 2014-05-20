@@ -26,7 +26,7 @@
     <div class="sub-view" ui-view></div>
     <div class="panel panel-default main-panel">
         <div class="panel-body">
-            <div ng-repeat="dir in dirs | filter:{'name': search } | orderBy:'name'" class="thumb thumb-folder img-thumbnail">
+            <div ng-repeat="dir in dirs | filter:{'name': search } | orderBy:'name'" ng-click="goToFolder(dir)" class="thumb thumb-folder img-thumbnail">
                 <i class="thumb-image fa fa-folder-o"></i>
                 <div class="thumb-name" data-ng-bind="dir.name"></div>
             </div>

@@ -46,5 +46,9 @@ angular.module('filemanager')
         $scope.showDirSection = function(){
             $state.go('main.add');
         }
+
+        $scope.goToFolder = function(folderObj){
+            $state.go('main', {dirId: folderObj.id});
+        }
     }])
 ;
