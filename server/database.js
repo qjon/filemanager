@@ -23,18 +23,23 @@ module.exports = {
                 + 'name VARCHAR(255)'
                 +  ')', function (err) {
                 if (err) throw err;
+                that.connection.query('CREATE TABLE IF NOT EXISTS files('
+                    + 'id INT NOT NULL AUTO_INCREMENT,'
+                    + 'PRIMARY KEY(id),'
+                    + 'dir_id INT,'
+                    + 'name VARCHAR(255),'
+                    + 'mime VARCHAR(100) NOT NULL,'
+                    + 'src VARCHAR(255) NOT NULL'
+                    +  ')', function (err, result) {
+                    if (err) throw err;
+                    if(result.warningCount === 0)
+                    {
+                        that.insertDefaultValues();
+                    }
+                });
             });
 
-            that.connection.query('CREATE TABLE IF NOT EXISTS files('
-                + 'id INT NOT NULL AUTO_INCREMENT,'
-                + 'PRIMARY KEY(id),'
-                + 'dir_id INT,'
-                + 'name VARCHAR(255),'
-                + 'mime VARCHAR(100) NOT NULL,'
-                + 'src VARCHAR(255) NOT NULL'
-                +  ')', function (err) {
-                if (err) throw err;
-            });
+
         });
     },
     insertDefaultValues: function(){

@@ -7,7 +7,6 @@ var database = require('./database');
 var q = require('q');
 
 database.connect();
-//database.insertDefaultValues();
 
 
 var app = express();
