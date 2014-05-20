@@ -85,7 +85,11 @@ module.exports = function(grunt) {
                 spawn: false
             },
             files: ['<%= pkg.options.client.src %>/js/app/**/*.js', '<%= pkg.options.client.src %>/js/app/**/*.html', '<%= pkg.options.client.src %>/css/**', '<%= pkg.options.client.src %>/../index.html', '<%= pkg.options.client.src %>/data/**/*.json'],
-            tasks: ['jshint', 'less', 'uglify', 'reload']
+            tasks: ['jshint', 'less', 'uglify', 'reload'],
+            express: {
+                files:  [ '<%= pkg.options.server.src %>/**/*.js' ],
+                tasks:  [ 'express' ]
+            }
         }
     });
 

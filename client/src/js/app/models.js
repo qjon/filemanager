@@ -10,8 +10,24 @@ angular.module('filemanager')
         this.isLoaded = false;
 
 
-        this.addFolder = function(name){
-            this.currentDir.dirs.push(new DirObj({name: name}));
+        this.addFolder = function(name, callbackSuccess, callbackError){
+            var that = this;
+            $http.post('/api/directory/add', {dir_id: this.currentDir.id, name: name})
+                .success(function(data){
+                    var dir = new DirObj(data);
+                    that.currentDir.dirs.push(dir);
+                    if(callbackSuccess)
+                    {
+                        callbackSuccess(new DirObj(data))
+                    }
+                })
+                .error(function(data){
+                    if(callbackError)
+                    {
+                        callbackError(data);
+                    }
+                })
+            ;
         }
 
 
@@ -24,8 +40,9 @@ angular.module('filemanager')
                 return this;
             }
 
-            $http.get('/data/directory.json')
+            $http.post('/api/directory', {dir_id: dirId})
                 .success(function(data){
+                    that.currentDir.id = dirId;
                     that.currentDir.dirs = [];
                     that.currentDir.files = [];
 

@@ -8,8 +8,10 @@ angular.module('filemanager')
         }
 
         $scope.addFolder = function(){
-            DirStructure.addFolder($scope.folderName);
-            $scope.goBack();
+            if($scope.folderName !== '')
+            {
+                DirStructure.addFolder($scope.folderName, $scope.goBack);
+            }
         }
     }])
 ;

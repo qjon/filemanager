@@ -4,8 +4,7 @@
     "version": "0.0.2",
     "options": {
         "server": {
-            "src": "server/src",
-            "dest": "server/dest",
+            "src": "server",
             "script": "server/app.js"
         },
         "client": {
