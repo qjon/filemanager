@@ -6,17 +6,17 @@ module.exports = function(config) {
 
 
     files: [
-      '../client/components/angular/*.js',
-      '../client/components/angular-route/*.js',
-      '../client/components/angular-mocks/*.js',
-      '../client/components/angular-animate/*.js',
-      '../client/components/lodash/*.js',
-      '../client/src/js/app/app.js',
-      '../client/src/js/app/filters.js',
-      '../client/src/js/app/services.js',
-      '../client/src/js/app/models.js',
-      '../client/src/js/app/controllers.js',
-      'unit/**/*.test.js'
+        '../client/components/angular/*.js',
+        '../client/components/angular-mocks/*.js',
+        '../client/components/angular-ui-router/*.js',
+        '../client/components/angular-animate/*.js',
+        '../client/components/lodash/*.js',
+        '../client/src/js/app/config.js',
+        '../client/src/js/app/filters.js',
+        '../client/src/js/app/services.js',
+        '../client/src/js/app/models.js',
+        '../client/src/js/app/controllers/*.js',
+        'unit/**/*.test.js'
     ],
 
     preprocessors: {

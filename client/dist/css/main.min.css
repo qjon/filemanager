@@ -64,28 +64,22 @@
   height: 80px;
   margin: 10px 50px;
 }
-.filemanager .animation {
-  opacity: 1;
-  position: absolute;
+.filemanager .sub-view {
+  max-height: 600px;
+  overflow: hidden;
 }
-.filemanager .animation.ng-hide-add,
-.filemanager .animation.ng-hide-remove {
-  display: block!important;
+.filemanager .sub-view[ui-view].ng-enter {
+  -webkit-transition: all linear 0.8s;
+  -moz-transition: all linear 0.8s;
+  -ms-transition: all linear 0.8s;
+  -o-transition: all linear 0.8s;
+  transition: all linear 0.8s;
 }
-.filemanager .animation.ng-hide-add,
-.filemanager .animation.ng-hide-remove {
-  /* The animation code itself */
-  -webkit-transition: all linear 0.5s;
-  -moz-transition: all linear 0.5s;
-  -ms-transition: all linear 0.5s;
-  -o-transition: all linear 0.5s;
-  transition: all linear 0.5s;
-}
-.filemanager .animation.ng-hide-add.ng-hide-add-active,
-.filemanager .animation.ng-hide-remove {
+.filemanager .sub-view[ui-view].ng-enter {
   opacity: 0;
+  max-height: 0;
 }
-.filemanager .animation.ng-hide-add,
-.filemanager .animation.ng-hide-remove.ng-hide-remove-active {
+.filemanager .sub-view[ui-view].ng-enter-active {
   opacity: 1;
+  max-height: 600px;
 }

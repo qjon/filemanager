@@ -98,35 +98,27 @@
 		}
 	}
 
-
-
-
-	// animation
-	.animation{
-		opacity: 1;
-		position: absolute;
-	}
-	.animation.ng-hide-add,
-	.animation.ng-hide-remove {
-		display:block!important;
+	.sub-view {
+		max-height: 600px;
+		overflow: hidden;
 	}
 
-	.animation.ng-hide-add, .animation.ng-hide-remove{
-		/* The animation code itself */
-		-webkit-transition: all linear 0.5s;
-		-moz-transition: all linear 0.5s;
-		-ms-transition: all linear 0.5s;
-		-o-transition: all linear 0.5s;
-		transition: all linear 0.5s;
+	.sub-view[ui-view].ng-enter {
+		-webkit-transition: all linear 0.8s;
+		-moz-transition: all linear 0.8s;
+		-ms-transition: all linear 0.8s;
+		-o-transition: all linear 0.8s;
+		transition: all linear 0.8s;
 	}
 
-	.animation.ng-hide-add.ng-hide-add-active,
-	.animation.ng-hide-remove {
+	.sub-view[ui-view].ng-enter {
 		opacity: 0;
+		max-height: 0;
 	}
 
-	.animation.ng-hide-add,
-	.animation.ng-hide-remove.ng-hide-remove-active {
-		opacity:1;
+	.sub-view[ui-view].ng-enter-active {
+		opacity: 1;
+		max-height: 600px;
 	}
+
 }

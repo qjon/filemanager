@@ -57,6 +57,13 @@ module.exports = function(grunt) {
                 port: SERVER_PORT // should match server.port config
             }
         },
+        symlink: {
+            templates: {
+                dest: '<%= pkg.options.client.dist %>/templates',
+                relativeSrc: '../../<%= pkg.options.client.src %>/js/app/templates',
+                options: {type: 'dir'}
+            }
+        },
         uglify: {
             options: {
                 mangle: false
@@ -64,10 +71,11 @@ module.exports = function(grunt) {
             files: {
                 src: [
                     '<%= pkg.options.client.src %>/js/app/app.js',
+                    '<%= pkg.options.client.src %>/js/app/config.js',
                     '<%= pkg.options.client.src %>/js/app/filters.js',
                     '<%= pkg.options.client.src %>/js/app/models.js',
                     '<%= pkg.options.client.src %>/js/app/services.js',
-                    '<%= pkg.options.client.src %>/js/app/controllers.js'
+                    '<%= pkg.options.client.src %>/js/app/controllers/*.js'
                 ],
                 dest: '<%= pkg.options.client.dist %>/js/app.min.js'
             }
@@ -76,7 +84,7 @@ module.exports = function(grunt) {
             options: {
                 spawn: false
             },
-            files: ['<%= pkg.options.client.src %>/js/app/**/*.js', '<%= pkg.options.client.src %>/css/**', '<%= pkg.options.client.src %>/../index.html', '<%= pkg.options.client.src %>/data/**/*.json'],
+            files: ['<%= pkg.options.client.src %>/js/app/**/*.js', '<%= pkg.options.client.src %>/js/app/**/*.html', '<%= pkg.options.client.src %>/css/**', '<%= pkg.options.client.src %>/../index.html', '<%= pkg.options.client.src %>/data/**/*.json'],
             tasks: ['jshint', 'less', 'uglify', 'reload']
         }
     });
@@ -89,10 +97,10 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-express-server');
     grunt.loadNpmTasks('grunt-reload');
     grunt.loadNpmTasks('grunt-karma');
-
+    grunt.loadNpmTasks('grunt-symlink');
 
 
     grunt.registerTask('install', ['bower:install']);
     // Default task(s).
-    grunt.registerTask('default', ['jshint', 'less', 'express', 'uglify', 'reload', 'watch']);
+    grunt.registerTask('default', ['jshint', 'less', 'express', 'uglify', 'symlink', 'reload', 'watch']);
 };
