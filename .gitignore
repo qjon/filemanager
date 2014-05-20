@@ -4,3 +4,4 @@
 /.rebooted
 /atlassian-ide-plugin.xml
 *.copy.js
+*.log

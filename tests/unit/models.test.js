@@ -31,7 +31,11 @@ describe('models.js', function () {
 
 
         it('should add new dir', function () {
+            $httpBackend.expectPOST('/api/directory/add', {dir_id: 0, name: 'New folder'})
+                .respond({"id":10,"name":"New folder", parent_id: 0})
+            ;
             DirStructure.addFolder('New folder');
+            $httpBackend.flush();
             expect(DirStructure.currentDir.dirs.length).toBe(3);
         });
 
