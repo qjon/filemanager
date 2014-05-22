@@ -1,0 +1,40 @@
+<div>
+    <!-- viewer -->
+    <div class="row nav-row">
+        <div class="col-sm-3 col-md-3 text-left">
+            <div class="btn-group">
+                <button ng-click="showDirSection()" class="btn btn-default" title="Utwórz katalog"><i class="fa fa-plus"></i><i class="fa fa-folder-o"></i></button>
+                <button class="btn btn-default" title="Wgraj pliki"><i class="fa fa-plus"></i><i class="fa fa-files-o"></i></button>
+            </div>
+        </div>
+        <div class="col-sm-4 col-md-4 text-center">
+            <div class="btn-group">
+                <button ng-click="setFilterType(false)" ng-class="{'active': !fileTypeFilter}" class="btn btn-default" title="Wszystkie typy plików"><i class="fa fa-file-o"></i></button>
+                <button ng-click="setFilterType('images')" ng-class="{'active': fileTypeFilter == 'images'}" class="btn btn-default" title="Zdjęcia"><i class="fa fa-picture-o"></i></button>
+                <button ng-click="setFilterType('audio')" ng-class="{'active': fileTypeFilter == 'audio'}" class="btn btn-default" title="Audio"><i class="fa fa-music"></i></button>
+                <button ng-click="setFilterType('video')" ng-class="{'active': fileTypeFilter == 'video'}" class="btn btn-default" title="Wideo"><i class="fa fa-video-camera"></i></button>
+                <button ng-click="setFilterType('archive')" ng-class="{'active': fileTypeFilter == 'archive'}" class="btn btn-default" title="Archiwa"><i class="fa fa-archive"></i></button>
+            </div>
+        </div>
+        <div class="col-sm-4 col-md-4 col-md-push-1 col-sm-push-1">
+            <div class="input-group">
+                <input ng-model="search" type="text" class="form-control" placeholder="Filtruj">
+                <span class="btn btn-default input-group-addon"><i class="fa fa-search"></i></span>
+            </div>
+        </div>
+    </div>
+    <div class="sub-view" ui-view></div>
+    <div class="panel panel-default main-panel">
+        <div class="panel-body">
+            <div ng-repeat="dir in dirs | filter:{'name': search } | orderBy:'name'" ng-click="goToFolder(dir)" class="thumb thumb-folder img-thumbnail">
+                <i class="thumb-image fa fa-folder-o"></i>
+                <div class="thumb-name" data-ng-bind="dir.name"></div>
+            </div>
+            <div ng-repeat="file in files | fileMime:(fileTypes[fileTypeFilter] || []) | filter:{'name': search } | orderBy:'name'" class="thumb thumb-file img-thumbnail">
+                <img ng-if="file.isImage()" ng-src="{{ file.src }}" class="thumb-image" >
+                <img ng-if="!file.isImage()" ng-src="{{ file.icon }}" class="thumb-image thumb-icon" >
+                <div class="thumb-name" data-ng-bind="file.name"></div>
+            </div>
+        </div>
+    </div>
+</div>

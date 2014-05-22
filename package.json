@@ -4,8 +4,7 @@
     "version": "0.0.2",
     "options": {
         "server": {
-            "src": "server/src",
-            "dest": "server/dest",
+            "src": "server",
             "script": "server/app.js"
         },
         "client": {
@@ -20,11 +19,18 @@
         "grunt-contrib-watch": "0.6.1",
         "grunt-contrib-less": "0.11.0",
         "grunt-express-server": "0.4.17",
+        "grunt-symlink": "0.4.0",
         "grunt-reload": "0.2.0",
         "grunt-bower-task": "0.3.4",
         "connect": "2.14.5",
         "grunt-karma": "0.8.3",
         "karma-jasmine": "0.1.5",
-        "karma-phantomjs-launcher": "0.1.2"
+        "karma-phantomjs-launcher": "0.1.2",
+
+        "express": "4.2.0",
+        "q": "1.0.1",
+        "body-parser": "1.2.0",
+        "cookie-parser": "1.1.0",
+        "mysql": "2.3.0"
     }
 }

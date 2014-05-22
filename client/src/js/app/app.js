@@ -1,4 +1,33 @@
 'use strict';
-var filemanager = angular.module('filemanager', ['ngRoute']);
+var fm = angular.module('fm', ['filemanager', 'ui.router', 'ngAnimate']);
 
+fm.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider){
+
+    $urlRouterProvider.when('', '/dir/0');
+
+
+    $stateProvider
+        .state('main', {
+            url: '/dir/:dirId',
+            templateUrl: '/dist/templates/main.html',
+            controller: 'MainCtrl',
+            resolve: {
+                dir: ['DirStructure', '$stateParams', function(DirStructure, $stateParams){
+                    return DirStructure.load($stateParams.dirId)
+                }]
+            }
+        })
+        .state('main.add', {
+            url: '/add',
+            templateUrl: '/dist/templates/dir_add.html',
+            controller: 'AddDirCtrl'
+        })
+    ;
+}]);
+
+fm.run(['$rootScope', 'LastState', '$state', function ($rootScope, lastState, $state) {
+    $rootScope.$on('$stateChangeSuccess', function(event, to, toParams, from, fromParams) {
+        lastState.setLastState(from, fromParams);
+    });
+}]);
 
