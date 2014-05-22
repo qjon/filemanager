@@ -23,14 +23,6 @@ describe('controllers.js', function () {
         });
 
         describe('primary values', function () {
-            it('dirs should be array', function () {
-                expect(Array.isArray($scope.dirs)).toBeTruthy();
-            });
-
-            it('files should be empty array', function () {
-                expect($scope.files.length).toBe(0);
-            });
-
             it('default fileTypeFilter should have been false', function () {
                 expect($scope.fileTypeFilter).toBeFalsy();
             });

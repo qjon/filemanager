@@ -4,10 +4,7 @@ angular.module('filemanager')
          * Current dir
          * @type {DirObj}
          */
-        this.currentDir = new DirObj({id: 0, name: 'Home'});
-
-
-        this.isLoaded = false;
+        this.currentDir = false;
 
 
         this.addFolder = function(name, callbackSuccess, callbackError){
@@ -35,13 +32,18 @@ angular.module('filemanager')
         this.load = function(dirId){
             var defer = $q.defer(), that = this;
 
-            if(this.isLoaded && parseInt(dirId, 10) === this.currentDir.id)
+            if(this.currentDir !== false && parseInt(dirId, 10) === this.currentDir.id)
             {
                 return this;
             }
 
             $http.post('/api/directory', {dir_id: dirId})
                 .success(function(data){
+                    if(parseInt(dirId, 10) === 0)
+                    {
+                        that.currentDir = new DirObj({id: 0, name: 'Home'});
+                    }
+
                     that.currentDir.id = dirId;
                     that.currentDir.dirs = [];
                     that.currentDir.files = [];
@@ -54,7 +56,6 @@ angular.module('filemanager')
                         that.currentDir.files.push(new FileObj(fileData));
                     });
 
-                    that.isLoaded = true;
                     defer.resolve(that);
                 })
             ;
