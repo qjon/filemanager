@@ -33,6 +33,14 @@ angular.module('filemanager')
         this.load = function(dirId){
             var defer = $q.defer(), that = this;
 
+
+            function setDefaultFolder(){
+                if(parseInt(dirId, 10) === 0)
+                {
+                    that.currentDir = new DirObj({id: 0, name: 'Home'});
+                }
+            }
+
             if(this.currentDir !== false && parseInt(dirId, 10) === this.currentDir.id)
             {
                 return this;
@@ -40,10 +48,7 @@ angular.module('filemanager')
 
             $http.post('/api/directory', {'dir_id': dirId})
                 .success(function(data){
-                    if(parseInt(dirId, 10) === 0)
-                    {
-                        that.currentDir = new DirObj({id: 0, name: 'Home'});
-                    }
+                    setDefaultFolder();
 
                     that.currentDir.id = dirId;
                     that.currentDir.dirs = [];
