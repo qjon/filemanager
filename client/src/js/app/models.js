@@ -1,3 +1,4 @@
+'use strict';
 angular.module('filemanager')
     .service('DirStructure', ['$q', '$http', 'DirObj', 'FileObj', function($q, $http, DirObj, FileObj){
         /**
@@ -9,7 +10,7 @@ angular.module('filemanager')
 
         this.addFolder = function(name, callbackSuccess, callbackError){
             var that = this;
-            $http.post('/api/directory/add', {dir_id: this.currentDir.id, name: name})
+            $http.post('/api/directory/add', {'dir_id': this.currentDir.id, name: name})
                 .success(function(data){
                     var dir = new DirObj(data);
                     that.currentDir.dirs.push(dir);
@@ -37,7 +38,7 @@ angular.module('filemanager')
                 return this;
             }
 
-            $http.post('/api/directory', {dir_id: dirId})
+            $http.post('/api/directory', {'dir_id': dirId})
                 .success(function(data){
                     if(parseInt(dirId, 10) === 0)
                     {

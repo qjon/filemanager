@@ -106,5 +106,6 @@ module.exports = function(grunt) {
 
     grunt.registerTask('install', ['bower:install']);
     // Default task(s).
-    grunt.registerTask('default', ['jshint', 'less', 'express', 'uglify', 'symlink', 'reload', 'watch']);
+    grunt.registerTask('build', ['jshint']);
+    grunt.registerTask('default', ['less', 'express', 'uglify', 'symlink', 'reload', 'watch']);
 };
