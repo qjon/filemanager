@@ -17,6 +17,19 @@ module.exports = function(grunt) {
                 }
             }
         },
+        complexity: {
+            build: {
+                src: ['<%= pkg.options.client.src %>/js/app/**/*.js'],
+                options: {
+                    breakOnErrors: true,
+                    errorsOnly: true,
+                    cyclomatic: [5, 7, 12],
+                    halstead: [10, 13, 20],
+                    maintainability: 100,
+                    hideComplexFunctions: false
+                }
+            }
+        },
         jshint: {
             options: {
                 jshintrc: '.jshintrc'
@@ -102,9 +115,11 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-reload');
     grunt.loadNpmTasks('grunt-karma');
     grunt.loadNpmTasks('grunt-symlink');
+    grunt.loadNpmTasks('grunt-complexity');
 
 
     grunt.registerTask('install', ['bower:install']);
     // Default task(s).
-    grunt.registerTask('default', ['jshint', 'less', 'express', 'uglify', 'symlink', 'reload', 'watch']);
+    grunt.registerTask('build', ['jshint', 'complexity']);
+    grunt.registerTask('default', ['less', 'express', 'uglify', 'symlink', 'reload', 'watch']);
 };

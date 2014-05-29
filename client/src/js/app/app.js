@@ -25,7 +25,7 @@ fm.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $url
     ;
 }]);
 
-fm.run(['$rootScope', 'LastState', '$state', function ($rootScope, lastState, $state) {
+fm.run(['$rootScope', 'LastState', '$state', function ($rootScope, lastState) {
     $rootScope.$on('$stateChangeSuccess', function(event, to, toParams, from, fromParams) {
         lastState.setLastState(from, fromParams);
     });

@@ -1,3 +1,4 @@
+'use strict';
 angular.module('filemanager')
     .filter('fileMime', function(){
         return function(filesList, fileMimeTypesList){
