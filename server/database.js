@@ -157,6 +157,28 @@ module.exports = {
 
         return defer.promise;
     },
+
+    /**
+     * Get folder data
+     * @param dirId
+     * @returns {Promise.promise|*}
+     */
+    getFolder: function(dirId){
+        if(dirId == 0)
+        {
+            return {id: 0, parent_id: null, name: 'Home'};
+        }
+        var defer = q.defer();
+        var query = "SELECT * FROM dirs WHERE id = " + dirId;
+        this.connection.query(query, function(err, rows, fields){
+            defer.resolve(rows[0]);
+        });
+
+        return defer.promise;
+    },
+
+
+
     /**
      * Get list of files in folder
      * @param dirId

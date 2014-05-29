@@ -23,8 +23,11 @@ app.use("/", express.static(__dirname + '/../client/'));
  */
 app.post('/api/directory', function(req, res) {
     var dirId = req.body.dir_id;
-    q.all([database.getSubFolders(dirId), database.getFilesFromFolder(dirId)]).then(function(data){
-        res.send({dirs: data[0], files: data[1]});
+    q.all([database.getSubFolders(dirId), database.getFilesFromFolder(dirId), database.getFolder(dirId)]).then(function(data){
+        var dir = data[2];
+        dir.dirs = data[0];
+        dir.files = data[1];
+        res.send(dir);
     });
 });
 app.post('/api/directory/add', function(req, res) {

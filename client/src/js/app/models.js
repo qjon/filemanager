@@ -34,17 +34,19 @@ angular.module('filemanager')
 
             if(this.currentDir !== false && parseInt(dirId, 10) === this.currentDir.id)
             {
+                console.log('XYZ');
                 return this;
             }
 
             $http.post('/api/directory', {dir_id: dirId})
                 .success(function(data){
-                    if(parseInt(dirId, 10) === 0)
+                    if(that.currentDir === false)
                     {
-                        that.currentDir = new DirObj({id: 0, name: 'Home'});
+                        that.currentDir = new DirObj({id: 0,  name: 'Home'});
                     }
 
                     that.currentDir.id = dirId;
+                    that.currentDir.parentId = data.parent_id;
                     that.currentDir.dirs = [];
                     that.currentDir.files = [];
 
