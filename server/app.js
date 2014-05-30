@@ -16,7 +16,7 @@ app.use(cookieParser());
 /**
  * Client servis
  */
-app.use("/", express.static(__dirname + '/../client/'));
+app.use("/", express.static(__dirname + '/../client/dist/'));
 
 /**
  * Get dir structure
