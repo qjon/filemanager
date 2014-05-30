@@ -6,16 +6,23 @@ module.exports = function(grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
         bower: {
-            install: {
+            options: {
+                install: true,
+                verbose: true,
+                cleanTargetDir: true,
+                cleanBowerDir: false,
+                layout: 'byComponent'
+            },
+            dist: {
                 options: {
-                    targetDir: '<%= pkg.options.client.src %>/../components',
-                    install: true,
-                    verbose: true,
-                    cleanTargetDir: true,
-                    cleanBowerDir: false,
-                    layout: 'byComponent'
+                    targetDir: '<%= pkg.options.client.dist %>/components'
                 }
             }
+//            ,src: {
+//                options: {
+//                    targetDir: '<%= pkg.options.client.src %>/components'
+//                }
+//            }
         },
         complexity: {
             build: {
@@ -27,6 +34,20 @@ module.exports = function(grunt) {
                     halstead: [10, 13, 20],
                     maintainability: 100,
                     hideComplexFunctions: false
+                }
+            }
+        },
+        jade: {
+            build: {
+                files: {
+                    '<%= pkg.options.client.dist %>/templates/': ['<%= pkg.options.client.src %>/js/app/templates/*.jade'],
+                    '<%= pkg.options.client.dist %>/': ['<%= pkg.options.client.src %>/../index.jade']
+                },
+                options: {
+//                    basePath: '<%= pkg.options.client.src %>',
+                    extension: '.html',
+                    client: false,
+                    pretty: true
                 }
             }
         },
@@ -71,9 +92,14 @@ module.exports = function(grunt) {
             }
         },
         symlink: {
-            templates: {
-                dest: '<%= pkg.options.client.dist %>/templates',
-                relativeSrc: '../../<%= pkg.options.client.src %>/js/app/templates',
+//            data_src: {
+//                dest: '<%= pkg.options.client.src %>/data',
+//                relativeSrc: '../../<%= pkg.options.client.src %>/../data',
+//                options: {type: 'dir'}
+//            },
+            data_dest: {
+                dest: '<%= pkg.options.client.dist %>/data',
+                relativeSrc: '../../<%= pkg.options.client.src %>/../data',
                 options: {type: 'dir'}
             }
         },
@@ -97,8 +123,8 @@ module.exports = function(grunt) {
             options: {
                 spawn: false
             },
-            files: ['<%= pkg.options.client.src %>/js/app/**/*.js', '<%= pkg.options.client.src %>/js/app/**/*.html', '<%= pkg.options.client.src %>/css/**', '<%= pkg.options.client.src %>/../index.html', '<%= pkg.options.client.src %>/data/**/*.json'],
-            tasks: ['jshint', 'less', 'uglify', 'reload'],
+            files: ['<%= pkg.options.client.src %>/js/app/**/*.js', '<%= pkg.options.client.src %>/js/app/**/*.jade', '<%= pkg.options.client.src %>/css/**', '<%= pkg.options.client.src %>/../index.jade', '<%= pkg.options.client.src %>/data/**/*.json'],
+            tasks: ['jshint', 'less', 'uglify', 'jade', 'reload'],
             express: {
                 files:  [ '<%= pkg.options.server.src %>/**/*.js' ],
                 tasks:  [ 'express' ]
@@ -116,10 +142,11 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-karma');
     grunt.loadNpmTasks('grunt-symlink');
     grunt.loadNpmTasks('grunt-complexity');
+    grunt.loadNpmTasks('grunt-jade');
 
 
-    grunt.registerTask('install', ['bower:install']);
+    grunt.registerTask('install', ['bower', 'symlink']);
     // Default task(s).
     grunt.registerTask('build', ['jshint', 'complexity']);
-    grunt.registerTask('default', ['less', 'express', 'uglify', 'symlink', 'reload', 'watch']);
+    grunt.registerTask('default', ['less', 'express', 'uglify', 'jade', 'reload', 'watch']);
 };

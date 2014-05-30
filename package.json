@@ -27,6 +27,7 @@
         "karma-jasmine": "0.1.5",
         "karma-phantomjs-launcher": "0.1.2",
         "grunt-complexity": "^0.1.6",
+        "grunt-jade": "^0.28.2",
 
         "express": "4.2.0",
         "q": "1.0.1",
