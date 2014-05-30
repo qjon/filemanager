@@ -1,0 +1,17 @@
+.panel.panel-default.main-panel
+    .panel-body
+        h2.
+            Utwórz nowy folder
+        .alert.alert-danger(ng-show="folder_add.$invalid && folder_add.$dirty")
+            p.
+                Nazwa folderu jest wymagana i nie może być pusta
+        form.form.form-horizontal(name="folder_add", novalidate, style="margin: 10px;")
+            .form-group
+                input.form-control(type="text", name="folder_name", ng-model="folderName", placeholder="Nazwa folderu", required)
+        .btn-group.pull-right
+            button.btn.btn-success(ng-disabled="folder_add.$invalid", ng-click="addFolder()")
+                i.fa.fa-check.
+                    Utwórz
+            button.btn.btn-danger(ng-click="goBack()")
+                i.fa.fa-times.
+                    Anuluj
