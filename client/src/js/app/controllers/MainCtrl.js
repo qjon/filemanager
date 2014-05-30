@@ -8,6 +8,12 @@ angular.module('filemanager')
         $scope.parentDirId = DirStructure.currentDir.parentId;
 
         /**
+         * Current folder
+         * @type {Array}
+         */
+        $scope.currentDir = DirStructure.currentDir;
+
+        /**
          * List of folders in current folder
          * @type {Array}
          */
@@ -54,7 +60,14 @@ angular.module('filemanager')
         }
 
         $scope.goToFolder = function(folderObj){
-            $state.go('main', {dirId: folderObj.id});
+            if(folderObj === false)
+            {
+                $state.go('main', {dirId: 0});
+            }
+            else
+            {
+                $state.go('main', {dirId: folderObj.id});
+            }
         }
 
         $scope.goFolderUp = function(){

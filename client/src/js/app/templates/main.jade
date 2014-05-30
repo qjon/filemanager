@@ -28,6 +28,13 @@ div
     <div class="sub-view" ui-view></div>
     .panel.panel-default.main-panel
         .panel-body
+            ul.breadcrumb
+                li.link(ng-if="currentDir.id > 0", ng-click="goToFolder(false)").
+                    Home
+                li.link(ng-repeat="parent in currentDir.parentsList", ng-click="goToFolder(parent)").
+                    {{ parent.name }}
+                li.current.
+                    {{ currentDir.name }}
             .thumb.thumb-folder.img-thumbnail(ng-show="parentDirId !== null", ng-click="goFolderUp()")
                 i.thumb-image.fa.fa-folder-o
                 .thumb-name.
