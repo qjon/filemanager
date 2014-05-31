@@ -21,6 +21,13 @@
 .filemanager .btn .fa:last-child {
   margin-right: 2px;
 }
+.filemanager .breadcrumb .link {
+  cursor: pointer;
+  color: #2A6496;
+}
+.filemanager .breadcrumb .current {
+  color: #bbb;
+}
 .filemanager .main-panel .thumb {
   width: 180px;
   height: 140px;

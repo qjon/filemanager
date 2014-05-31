@@ -157,6 +157,60 @@ module.exports = {
 
         return defer.promise;
     },
+
+    /**
+     * Get folder data
+     * @param dirId
+     * @returns {Promise.promise|*}
+     */
+    getFolder: function(dirId){
+        if(dirId == 0)
+        {
+            return {id: 0, parent_id: null, name: 'Home'};
+        }
+        var defer = q.defer();
+        var query = "SELECT * FROM dirs WHERE id = " + dirId;
+        this.connection.query(query, function(err, rows, fields){
+            defer.resolve(rows[0]);
+        });
+
+        return defer.promise;
+    },
+
+
+    getParentsList: function(dirId, parentsList){
+        var defer = q.defer(), that= this;
+        var query = "SELECT * FROM dirs WHERE id = " + dirId;
+        parentsList = parentsList || [];
+        this.connection.query(query, function(err, rows, fields){
+            if(rows.length === 1)
+            {
+                parentsList.push(rows[0]);
+                if(rows[0].parent_id !== 0)
+                {
+                    that.getParentsList(rows[0].parent_id).then(function(data){
+                        data.forEach(function(parent){
+                            parentsList.push(parent);
+                        })
+
+                        defer.resolve(parentsList);
+                    });
+                }
+                else
+                {
+                    defer.resolve(parentsList);
+                }
+            }
+            else
+            {
+                defer.resolve(parentsList);
+            }
+        });
+
+        return defer.promise;
+    },
+
+
     /**
      * Get list of files in folder
      * @param dirId

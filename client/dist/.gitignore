@@ -1,1 +1,5 @@
 /templates
+/components/
+/.gitignore
+/data
+/index.html

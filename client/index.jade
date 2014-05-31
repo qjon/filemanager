@@ -1,0 +1,15 @@
+html(ng-app="fm")
+    head
+        each val in ['components/bootstrap/css/bootstrap.min.css', 'components/font-awesome-bower/css/font-awesome.min.css', '/css/main.min.css']
+            link(rel="stylesheet", href=val)
+        each val in ['jquery/jquery.js', '/lodash/lodash.compat.js', 'bootstrap/js/bootstrap.min.js', 'angular/angular.js', 'angular-ui-router/angular-ui-router.js', 'angular-animate/angular-animate.js', 'angular-resource/angular-resource.js', 'angular-bootstrap/ui-bootstrap.js', 'angular-bootstrap/ui-bootstrap-tpls.js']
+            script(src='components/' + val)
+        script(src='/js/app.min.js')
+        script.
+            __reloadServerUrl="ws://localhost:8001";
+        script(src="//localhost:8001/__reload/client.js")
+    body
+        .container.filemanager
+            h1.
+                Filemanager
+            <div class="animation" ui-view  style="width: 100%;"></div>

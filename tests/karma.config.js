@@ -6,11 +6,11 @@ module.exports = function(config) {
 
 
     files: [
-        '../client/components/angular/*.js',
-        '../client/components/angular-mocks/*.js',
-        '../client/components/angular-ui-router/*.js',
-        '../client/components/angular-animate/*.js',
-        '../client/components/lodash/*.js',
+        '../client/dist/components/angular/*.js',
+        '../client/dist/components/angular-mocks/*.js',
+        '../client/dist/components/angular-ui-router/*.js',
+        '../client/dist/components/angular-animate/*.js',
+        '../client/dist/components/lodash/*.js',
         '../client/src/js/app/config.js',
         '../client/src/js/app/filters.js',
         '../client/src/js/app/services.js',
@@ -20,13 +20,15 @@ module.exports = function(config) {
     ],
 
     preprocessors: {
-      '../../client/js/src/app/**/*.js': ['coverage']
+      '../client/src/js/app/**/*.js': ['coverage']
     },
 
     coverageReporter: {
       type : 'html',
       dir : 'coverage/'
     },
+
+    reporters: ['progress', 'growl', 'coverage'],
 
 
     port: 9876,

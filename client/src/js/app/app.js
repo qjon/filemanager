@@ -9,7 +9,7 @@ fm.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $url
     $stateProvider
         .state('main', {
             url: '/dir/:dirId',
-            templateUrl: '/dist/templates/main.html',
+            templateUrl: '/templates/main.html',
             controller: 'MainCtrl',
             resolve: {
                 dir: ['DirStructure', '$stateParams', function(DirStructure, $stateParams){
@@ -19,7 +19,7 @@ fm.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $url
         })
         .state('main.add', {
             url: '/add',
-            templateUrl: '/dist/templates/dir_add.html',
+            templateUrl: '/templates/dir_add.html',
             controller: 'AddDirCtrl'
         })
     ;
