@@ -25,6 +25,8 @@
         "connect": "2.14.5",
         "grunt-karma": "0.8.3",
         "karma-jasmine": "0.1.5",
+        "karma-coverage": "^0.2.4",
+        "karma-growl": "^1.7.0",
         "karma-phantomjs-launcher": "0.1.2",
         "grunt-complexity": "^0.1.6",
         "grunt-jade": "^0.28.2",

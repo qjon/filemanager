@@ -35,7 +35,7 @@ div
                     {{ parent.name }}
                 li.current.
                     {{ currentDir.name }}
-            .thumb.thumb-folder.img-thumbnail(ng-show="parentDirId !== null", ng-click="goFolderUp()")
+            .thumb.thumb-folder.img-thumbnail(ng-show="currentDir.id", ng-click="goFolderUp()")
                 i.thumb-image.fa.fa-folder-o
                 .thumb-name.
                     ..
