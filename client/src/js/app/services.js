@@ -1,3 +1,4 @@
+'use strict';
 angular.module('filemanager')
     .service('LastState', ['$state', function($state){
         this.state = false;

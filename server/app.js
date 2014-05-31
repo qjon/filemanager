@@ -16,15 +16,23 @@ app.use(cookieParser());
 /**
  * Client servis
  */
-app.use("/", express.static(__dirname + '/../client/'));
+app.use("/", express.static(__dirname + '/../client/dist/'));
 
 /**
  * Get dir structure
  */
 app.post('/api/directory', function(req, res) {
     var dirId = req.body.dir_id;
-    q.all([database.getSubFolders(dirId), database.getFilesFromFolder(dirId)]).then(function(data){
-        res.send({dirs: data[0], files: data[1]});
+    q.all([database.getSubFolders(dirId), database.getFilesFromFolder(dirId), database.getFolder(dirId), database.getParentsList(dirId)]).then(function(data){
+        var dir = data[2];
+        dir.dirs = data[0];
+        dir.files = data[1];
+        dir.parentsList = data[3].reverse();
+        if(dir.parentsList.length > 0)
+        {
+            dir.parentsList.splice(dir.parentsList.length - 1, 1)
+        }
+        res.send(dir);
     });
 });
 app.post('/api/directory/add', function(req, res) {
