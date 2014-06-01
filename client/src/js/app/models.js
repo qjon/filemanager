@@ -8,6 +8,11 @@ angular.module('filemanager')
         this.currentDir = false;
 
 
+        this.getSubDirById = function(id){
+            return _.find(this.currentDir.dirs, {id: parseInt(id)});
+        }
+
+
         this.addFolder = function(name, callbackSuccess, callbackError){
             var that = this;
             $http.post('/api/directory/add', {'dir_id': this.currentDir.id, name: name})
@@ -28,14 +33,13 @@ angular.module('filemanager')
             ;
         }
 
-        this.saveFolder = function(name, callbackSuccess, callbackError){
-            var that = this;
-            $http.post('/api/directory/save', {'dir_id': this.currentDir.id, name: name})
+        this.saveFolder = function(dirObj, name, callbackSuccess, callbackError){
+            $http.post('/api/directory/save', {'dir_id': dirObj.id, name: name})
                 .success(function(){
-                    that.name = name;
+                    dirObj.name = name;
                     if(callbackSuccess)
                     {
-                        callbackSuccess(that);
+                        callbackSuccess(dirObj);
                     }
                 })
                 .error(function(data){

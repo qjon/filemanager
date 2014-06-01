@@ -1,7 +1,10 @@
 'use strict';
 angular.module('filemanager')
     .controller('EditDirCtrl', ['$scope', '$state', '$timeout', 'LastState', 'DirStructure', function($scope, $state, $timeout, lastState, DirStructure){
-        $scope.folderName = DirStructure.currentDir.name;
+
+        $scope.changedDir = DirStructure.getSubDirById($state.params.changeDirId);
+
+        $scope.folderName = $scope.changedDir.name;
 
         $scope.orgName = $scope.folderName;
 
@@ -17,7 +20,7 @@ angular.module('filemanager')
         $scope.saveFolder = function(){
             if($scope.folderName !== '')
             {
-                DirStructure.saveFolder($scope.folderName, $scope.goBack);
+                DirStructure.saveFolder($scope.changedDir, $scope.folderName, $scope.goBack);
             }
         }
     }])

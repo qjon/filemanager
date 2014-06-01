@@ -9,7 +9,7 @@
             .form-group
                 input.form-control(type="text", name="folder_name", ng-model="folderName", placeholder="Nazwa folderu", required)
         .btn-group.pull-right
-            button.btn.btn-success(ng-disabled="folder_add.$invalid", ng-click="saveFolder()")
+            button.btn.btn-success(ng-disabled="folder_add.$invalid || folderName == orgName", ng-click="saveFolder()")
                 i.fa.fa-check.
                     Zapisz
             button.btn.btn-danger(ng-click="goBack()")

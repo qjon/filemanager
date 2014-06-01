@@ -56,7 +56,7 @@ angular.module('filemanager')
 
         $scope.editFolder = function(dirObj, $event){
             $event.stopPropagation();
-            $state.go('main.edit', {dirId: dirObj.id});
+            $state.go('main.edit', {dirId: $scope.currentDir.id, changeDirId: dirObj.id});
         }
 
         $scope.goToFolder = function(folderObj){
@@ -69,6 +69,12 @@ angular.module('filemanager')
                 $state.go('main', {dirId: folderObj.id});
             }
         }
+
+
+        $scope.removeFolder = function(dirObj){
+            $state.go('main.delete', {dirId: dirObj.id});
+        }
+
 
         $scope.goFolderUp = function(){
             if($scope.currentDir.id !== 0)

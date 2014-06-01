@@ -23,7 +23,7 @@ fm.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $url
             controller: 'AddDirCtrl'
         })
         .state('main.edit', {
-            url: '/edit',
+            url: '/edit/:changeDirId',
             templateUrl: '/templates/dir_edit.html',
             controller: 'EditDirCtrl'
         })
