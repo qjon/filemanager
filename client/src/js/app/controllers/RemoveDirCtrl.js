@@ -6,6 +6,11 @@ angular.module('filemanager')
 
         $scope.folderName = $scope.removedDir.name;
 
+        $scope.error = '';
+
+        $scope.showAlert = function(responseData){
+            $scope.error = responseData.message;
+        }
 
         $scope.goBack = function(){
             $state.go('main', {dirId: $state.params.dirId});
@@ -14,7 +19,7 @@ angular.module('filemanager')
         $scope.removeFolder = function(){
             if($scope.folderName !== '')
             {
-                DirStructure.removeFolder($scope.removedDir, $scope.goBack);
+                DirStructure.removeFolder($scope.removedDir, $scope.goBack, $scope.showAlert);
             }
         }
     }])

@@ -227,20 +227,30 @@ module.exports = {
     },
 
     removeDir: function(dirId){
-        q.fcall(this.getSubFolders(dirId))
+        var that = this, defer = q.defer();
+        this.getSubFolders(dirId)
             .then(function(dirs){
                 if(dirs.length > 0)
                 {
-                    throw Error('Folder is not empty');
+                    throw new Error('Folder is not empty');
                 }
             })
             .then(function(files){
                 // TODO: check if is some files in dir
+                console.log('files');
             })
-            .done(function(){
-                console.log('done');
+            .then(function(){
+                var query = "DELETE FROM dirs WHERE id = " + dirId;
+//                that.connection.query(query, function(err, rows, fields){
+                    defer.resolve({success: true});
+//                });
+            })
+            .catch(function(error){
+                defer.resolve({error: true, message: error.message});
             })
         ;
+
+        return defer.promise;
     },
 
     /**

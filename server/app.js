@@ -50,11 +50,10 @@ app.post('/api/directory/save', function(req, res) {
     });
 });
 
-app.delete('/api/directory/delete', function(req, res) {
+app.post('/api/directory/remove', function(req, res) {
     var dirId = req.body.dir_id;
     q.all([database.removeDir(dirId)]).then(function(data){
-        console.log(data);
-//        res.send({id: dirId, name: name});
+        res.send(data[0]);
     });
 });
 

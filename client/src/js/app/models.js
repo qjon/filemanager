@@ -85,6 +85,37 @@ angular.module('filemanager')
 
             return defer.promise;
         }
+
+
+
+        this.removeFolder = function(dirObj, callbackSuccess, callbackError){
+            var that = this;
+            $http.post('/api/directory/remove', {'dir_id': dirObj.id})
+                .success(function(data){
+                    if(!data.error)
+                    {
+                        that.currentDir.dirs = _.remove(that.currentDir.dirs, {id: parseInt(dirObj.id)});
+                        if(callbackSuccess)
+                        {
+                            callbackSuccess();
+                        }
+                    }
+                    else
+                    {
+                        if(callbackError)
+                        {
+                            callbackError(data);
+                        }
+                    }
+                })
+                .error(function(data){
+                    if(callbackError)
+                    {
+                        callbackError(data);
+                    }
+                })
+            ;
+        }
     }])
     .factory('FileObj', ['FileTypes', 'FileIcons', function(FileTypes, FileIcons){
         function FileObj(data) {
