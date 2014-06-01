@@ -50,6 +50,14 @@ app.post('/api/directory/save', function(req, res) {
     });
 });
 
+app.delete('/api/directory/delete', function(req, res) {
+    var dirId = req.body.dir_id;
+    q.all([database.removeDir(dirId)]).then(function(data){
+        console.log(data);
+//        res.send({id: dirId, name: name});
+    });
+});
+
 
 var server = app.listen(3000, function() {
     console.log('Listening on port %d', server.address().port);

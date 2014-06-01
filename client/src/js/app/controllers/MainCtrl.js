@@ -71,8 +71,9 @@ angular.module('filemanager')
         }
 
 
-        $scope.removeFolder = function(dirObj){
-            $state.go('main.delete', {dirId: dirObj.id});
+        $scope.removeFolder = function(dirObj, $event){
+            $event.stopPropagation();
+            $state.go('main.remove', {dirId: $scope.currentDir.id, removeDirId: dirObj.id});
         }
 
 

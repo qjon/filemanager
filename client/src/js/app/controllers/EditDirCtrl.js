@@ -1,6 +1,6 @@
 'use strict';
 angular.module('filemanager')
-    .controller('EditDirCtrl', ['$scope', '$state', '$timeout', 'LastState', 'DirStructure', function($scope, $state, $timeout, lastState, DirStructure){
+    .controller('EditDirCtrl', ['$scope', '$state', '$timeout', 'DirStructure', function($scope, $state, $timeout, DirStructure){
 
         $scope.changedDir = DirStructure.getSubDirById($state.params.changeDirId);
 
@@ -14,7 +14,7 @@ angular.module('filemanager')
 
 
         $scope.goBack = function(){
-            lastState.goBack();
+            $state.go('main', {dirId: $state.params.dirId});
         }
 
         $scope.saveFolder = function(){

@@ -226,6 +226,29 @@ module.exports = {
         return defer.promise;
     },
 
+    removeDir: function(dirId){
+        q.fcall(this.getSubFolders(dirId))
+            .then(function(dirs){
+                if(dirs.length > 0)
+                {
+                    throw Error('Folder is not empty');
+                }
+            })
+            .then(function(files){
+                // TODO: check if is some files in dir
+            })
+            .done(function(){
+                console.log('done');
+            })
+        ;
+    },
+
+    /**
+     * Save changed folder name
+     * @param dirId
+     * @param name
+     * @returns {Promise.promise|*}
+     */
     saveFolder: function(dirId, name){
         this.connection.config.queryFormat = function (query, values) {
             if (!values) return query;
