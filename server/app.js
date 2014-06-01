@@ -35,10 +35,18 @@ app.post('/api/directory', function(req, res) {
         res.send(dir);
     });
 });
+
 app.post('/api/directory/add', function(req, res) {
     var parentId = req.body.dir_id, name = req.body.name;
     q.all([database.addSubFolder(parentId, name)]).then(function(data){
         res.send({id: data[0].insertId, parent_id: parentId, name: name});
+    });
+});
+
+app.post('/api/directory/save', function(req, res) {
+    var dirId = req.body.dir_id, name = req.body.name;
+    q.all([database.saveFolder(dirId, name)]).then(function(){
+        res.send({id: dirId, name: name});
     });
 });
 

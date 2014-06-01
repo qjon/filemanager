@@ -16,7 +16,26 @@ angular.module('filemanager')
                     that.currentDir.dirs.push(dir);
                     if(callbackSuccess)
                     {
-                        callbackSuccess(new DirObj(data))
+                        callbackSuccess(new DirObj(data));
+                    }
+                })
+                .error(function(data){
+                    if(callbackError)
+                    {
+                        callbackError(data);
+                    }
+                })
+            ;
+        }
+
+        this.saveFolder = function(name, callbackSuccess, callbackError){
+            var that = this;
+            $http.post('/api/directory/save', {'dir_id': this.currentDir.id, name: name})
+                .success(function(){
+                    that.name = name;
+                    if(callbackSuccess)
+                    {
+                        callbackSuccess(that);
                     }
                 })
                 .error(function(data){

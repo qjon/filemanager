@@ -53,6 +53,12 @@ angular.module('filemanager')
             $state.go('main.add');
         }
 
+
+        $scope.editFolder = function(dirObj, $event){
+            $event.stopPropagation();
+            $state.go('main.edit', {dirId: dirObj.id});
+        }
+
         $scope.goToFolder = function(folderObj){
             if(folderObj === false)
             {

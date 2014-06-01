@@ -138,7 +138,7 @@ module.exports = {
     },
     addSubFolder: function(parentId, name){
         var defer = q.defer();
-        this.connection.query('INSERT INTO dirs SET ?', {name: name, parent_id: parentId}, function(err, result){
+        this.connection.query('INSERT INTO dirs SET name = :name, parent_id = :parent_id', {name: name, parent_id: parentId}, function(err, result){
             defer.resolve(result);
         });
         return defer.promise;
@@ -223,6 +223,25 @@ module.exports = {
             defer.resolve(rows);
         });
 
+        return defer.promise;
+    },
+
+    saveFolder: function(dirId, name){
+        this.connection.config.queryFormat = function (query, values) {
+            if (!values) return query;
+            return query.replace(/\:(\w+)/g, function (txt, key) {
+                if (values.hasOwnProperty(key)) {
+                    return this.escape(values[key]);
+                }
+                return txt;
+            }.bind(this));
+        };
+
+        var defer = q.defer();
+        this.connection.query('UPDATE dirs SET name = :name WHERE id = :id', {name: name, id: dirId}, function(err, result){
+            console.log(err, result);
+            defer.resolve(result);
+        });
         return defer.promise;
     }
 }
