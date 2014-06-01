@@ -5,10 +5,13 @@
 
 @thumbNameHeight: 30px;
 
+@hoverColor: red;
+
 
 .@{containerClass} {
 
 	position: relative;
+
 
 	.nav-row {
 		margin: 0 0 10px 0;
@@ -54,10 +57,16 @@
 			height: @thumbHeight;
 			margin: 20px;
 			cursor: pointer;
+			position: relative;
+			overflow: hidden;
 
 			&:hover {
-				border: 1px solid red;
-				opacity: 0.7;
+				border: 1px solid @hoverColor;
+//				opacity: 0.7;
+
+				.menu {
+					top: 0;
+				}
 			}
 
 			.thumb-image {
@@ -106,6 +115,31 @@
 				}
 			}
 
+
+			.menu {
+				position: absolute;
+				left: 0;
+				top: -28px;
+				width: 100%;
+				-webkit-transition: all linear 200ms;
+				-moz-transition: all linear 200ms;
+				-ms-transition: all linear 200ms;
+				-o-transition: all linear 200ms;
+				transition: all linear 200ms;
+
+				i {
+					display: inline-block;
+					width: 50%;
+					font-size: 20px;
+					padding: 4px 0;
+					background-color: rgba(204,204,204,0.4);
+
+					&:hover {
+						color: @hoverColor;
+						background-color: rgba(204,204,204,0.7);
+					}
+				}
+			}
 		}
 	}
 
@@ -131,5 +165,6 @@
 		opacity: 1;
 		max-height: 600px;
 	}
+
 
 }
