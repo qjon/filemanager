@@ -8,6 +8,11 @@ angular.module('filemanager')
         this.currentDir = false;
 
 
+        this.getSubDirById = function(id){
+            return _.find(this.currentDir.dirs, {id: parseInt(id)});
+        }
+
+
         this.addFolder = function(name, callbackSuccess, callbackError){
             var that = this;
             $http.post('/api/directory/add', {'dir_id': this.currentDir.id, name: name})
@@ -16,7 +21,25 @@ angular.module('filemanager')
                     that.currentDir.dirs.push(dir);
                     if(callbackSuccess)
                     {
-                        callbackSuccess(new DirObj(data))
+                        callbackSuccess(new DirObj(data));
+                    }
+                })
+                .error(function(data){
+                    if(callbackError)
+                    {
+                        callbackError(data);
+                    }
+                })
+            ;
+        }
+
+        this.saveFolder = function(dirObj, name, callbackSuccess, callbackError){
+            $http.post('/api/directory/save', {'dir_id': dirObj.id, name: name})
+                .success(function(){
+                    dirObj.name = name;
+                    if(callbackSuccess)
+                    {
+                        callbackSuccess(dirObj);
                     }
                 })
                 .error(function(data){
@@ -61,6 +84,37 @@ angular.module('filemanager')
             ;
 
             return defer.promise;
+        }
+
+
+
+        this.removeFolder = function(dirObj, callbackSuccess, callbackError){
+            var that = this;
+            $http.post('/api/directory/remove', {dir_id: dirObj.id})
+                .success(function(data){
+                    if(!data.error)
+                    {
+                        that.currentDir.dirs = _.remove(that.currentDir.dirs, {id: parseInt(dirObj.id)});
+                        if(callbackSuccess)
+                        {
+                            callbackSuccess();
+                        }
+                    }
+                    else
+                    {
+                        if(callbackError)
+                        {
+                            callbackError(data);
+                        }
+                    }
+                })
+                .error(function(data){
+                    if(callbackError)
+                    {
+                        callbackError(data);
+                    }
+                })
+            ;
         }
     }])
     .factory('FileObj', ['FileTypes', 'FileIcons', function(FileTypes, FileIcons){

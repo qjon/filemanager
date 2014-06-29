@@ -42,6 +42,9 @@ div
             .thumb.thumb-folder.img-thumbnail(ng-repeat="dir in dirs | filter:{'name': search } | orderBy:'name'", ng-click="goToFolder(dir)")
                 i.thumb-image.fa.fa-folder-o
                 .thumb-name(data-ng-bind="dir.name")
+                .menu.folder-menu
+                    i.fa.fa-edit(ng-click="editFolder(dir, $event)")
+                    i.fa.fa-trash-o(ng-click="removeFolder(dir, $event)")
             .thumb.thumb-file.img-thumbnail(ng-repeat="file in files | fileMime:(fileTypes[fileTypeFilter] || []) | filter:{'name': search } | orderBy:'name'")
                 img.thumb-image(ng-if="file.isImage()", ng-src="{{ file.src }}")
                 img.thumb-image.thumb-icon(ng-if="!file.isImage()", ng-src="{{ file.icon }}")

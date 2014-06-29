@@ -1,0 +1,17 @@
+.panel.panel-default.main-panel
+    .panel-body
+        h2.
+            Zmień nazwę folderu "{{ orgName }}"
+        .alert.alert-danger(ng-show="folder_add.$invalid && folder_add.$dirty")
+            p.
+                Nazwa folderu nie może być pusta
+        form.form.form-horizontal(name="folder_add", novalidate, style="margin: 10px;")
+            .form-group
+                input.form-control(type="text", name="folder_name", ng-model="folderName", placeholder="Nazwa folderu", required)
+        .btn-group.pull-right
+            button.btn.btn-success(ng-disabled="folder_add.$invalid || folderName == orgName", ng-click="saveFolder()")
+                i.fa.fa-check.
+                    Zapisz
+            button.btn.btn-danger(ng-click="goBack()")
+                i.fa.fa-times.
+                    Anuluj
