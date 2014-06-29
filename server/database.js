@@ -234,16 +234,20 @@ module.exports = {
                 {
                     throw new Error('Folder is not empty');
                 }
+
+                return that.getFilesFromFolder(dirId);
             })
             .then(function(files){
-                // TODO: check if is some files in dir
-                console.log('files');
+                if(files.length > 0)
+                {
+                    throw new Error('Folder is not empty');
+                }
             })
             .then(function(){
                 var query = "DELETE FROM dirs WHERE id = " + dirId;
-//                that.connection.query(query, function(err, rows, fields){
+                that.connection.query(query, function(err, rows, fields){
                     defer.resolve({success: true});
-//                });
+                });
             })
             .catch(function(error){
                 defer.resolve({error: true, message: error.message});

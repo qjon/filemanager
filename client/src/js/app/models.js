@@ -90,7 +90,7 @@ angular.module('filemanager')
 
         this.removeFolder = function(dirObj, callbackSuccess, callbackError){
             var that = this;
-            $http.post('/api/directory/remove', {'dir_id': dirObj.id})
+            $http.post('/api/directory/remove', {dir_id: dirObj.id})
                 .success(function(data){
                     if(!data.error)
                     {
