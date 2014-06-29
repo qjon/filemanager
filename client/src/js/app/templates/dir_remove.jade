@@ -1,0 +1,17 @@
+.panel.panel-default.main-panel
+    .panel-body
+        h2.
+            Usuń folder
+        .alert.alert-danger(ng-if="error")
+            p.
+                {{ error }}
+        .alert.alert-warning
+            p.
+                Czy chcesz usunąć folder <strong>{{ folderName }}</strong>? Operacja ta spowoduje całkowite usunięcie tego folderu, czy kontynować?
+        .btn-group.pull-right
+            button.btn.btn-success(ng-disabled="error", ng-click="removeFolder()")
+                i.fa.fa-check.
+                    Tak, usuń
+            button.btn.btn-danger(ng-click="goBack()")
+                i.fa.fa-times.
+                    Anuluj

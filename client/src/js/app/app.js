@@ -22,6 +22,16 @@ fm.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $url
             templateUrl: '/templates/dir_add.html',
             controller: 'AddDirCtrl'
         })
+        .state('main.edit', {
+            url: '/edit/:changeDirId',
+            templateUrl: '/templates/dir_edit.html',
+            controller: 'EditDirCtrl'
+        })
+        .state('main.remove', {
+            url: '/remove/:removeDirId',
+            templateUrl: '/templates/dir_remove.html',
+            controller: 'RemoveDirCtrl'
+        })
     ;
 }]);
 

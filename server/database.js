@@ -138,7 +138,7 @@ module.exports = {
     },
     addSubFolder: function(parentId, name){
         var defer = q.defer();
-        this.connection.query('INSERT INTO dirs SET ?', {name: name, parent_id: parentId}, function(err, result){
+        this.connection.query('INSERT INTO dirs SET name = :name, parent_id = :parent_id', {name: name, parent_id: parentId}, function(err, result){
             defer.resolve(result);
         });
         return defer.promise;
@@ -223,6 +223,62 @@ module.exports = {
             defer.resolve(rows);
         });
 
+        return defer.promise;
+    },
+
+    removeDir: function(dirId){
+        var that = this, defer = q.defer();
+        this.getSubFolders(dirId)
+            .then(function(dirs){
+                if(dirs.length > 0)
+                {
+                    throw new Error('Folder is not empty');
+                }
+
+                return that.getFilesFromFolder(dirId);
+            })
+            .then(function(files){
+                if(files.length > 0)
+                {
+                    throw new Error('Folder is not empty');
+                }
+            })
+            .then(function(){
+                var query = "DELETE FROM dirs WHERE id = " + dirId;
+                that.connection.query(query, function(err, rows, fields){
+                    defer.resolve({success: true});
+                });
+            })
+            .catch(function(error){
+                defer.resolve({error: true, message: error.message});
+            })
+        ;
+
+        return defer.promise;
+    },
+
+    /**
+     * Save changed folder name
+     * @param dirId
+     * @param name
+     * @returns {Promise.promise|*}
+     */
+    saveFolder: function(dirId, name){
+        this.connection.config.queryFormat = function (query, values) {
+            if (!values) return query;
+            return query.replace(/\:(\w+)/g, function (txt, key) {
+                if (values.hasOwnProperty(key)) {
+                    return this.escape(values[key]);
+                }
+                return txt;
+            }.bind(this));
+        };
+
+        var defer = q.defer();
+        this.connection.query('UPDATE dirs SET name = :name WHERE id = :id', {name: name, id: dirId}, function(err, result){
+            console.log(err, result);
+            defer.resolve(result);
+        });
         return defer.promise;
     }
 }
