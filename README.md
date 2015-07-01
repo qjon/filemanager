@@ -1,3 +1,4 @@
+![](https://travis-ci.org/qjon/filemanager.svg?branch=master)
 filemanager
 ===========
 
