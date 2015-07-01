@@ -4,8 +4,9 @@ node_js:
 cache:
   directories:
     - node_modules
+    - bower_components
 install:
-  - npm install -g grunt-cli bower
+  - npm install -g grunt-cli
   - npm i
   - grunt bower
   - grunt karma
