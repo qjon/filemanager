@@ -1,0 +1,9 @@
+language: node_js
+node_js:
+  - "0.12"
+install:
+  - npm install -g grunt-cli bower
+  - npm i
+  - grunt bower
+  - grunt karma
+  
