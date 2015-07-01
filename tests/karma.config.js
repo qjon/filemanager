@@ -38,6 +38,6 @@ module.exports = function(config) {
     browsers: ['PhantomJS'],
 
     autoWatch: true,
-    singleRun: false
+    singleRun: true
   });
 };
